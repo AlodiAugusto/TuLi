@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@200&display=swap');
+
+body{
+
+    background: rgb(54, 60, 68);  
+    background: radial-gradient(circle, rgb(24, 32, 66) 0%, rgb(52, 54, 58) 100%);
+
+}
+
+.contenedor{
+    
+    text-align: center;
+    width: 75%;
+    margin: auto;
+ 
+}
+
+li{
+
+    text-align: left;
+    font-size: 19px;
+
+}
+
+h1{
+
+    color: #e6b329;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+h2{
+
+    color: rgb(255, 255, 255);
+    font-family:'Montserrat', sans-serif;
+    font-size: 32px;
+
+}
+
+h3{
+
+    color: rgb(255, 255, 255);
+    font-family:'Oswald', sans-serif;
+    font-size: 25px;
+
+}
+
+h4{
+
+    color: white;
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    margin-top: 20px;
+
+
+}
+
+h5{
+
+    color: rgb(255, 255, 255);
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+}
+
+.disponibles{
+
+    display:inline-block;
+    padding: 15px;
+
+}
+
+.portada{
+
+    width: 190px;
+    height: 260px;
+    border-style:solid;
+    border-width: 2px;
+    border-color: #ffffff;
+    cursor: pointer;
+    border-radius: 8px;
+
+
+}
+
+.portada:hover{
+
+    border-color: #e6b329;
+    opacity: 75%;
+
+}
+
+.carta{
+
+    padding: 15px;
+    background-color: #1b1b1b;
+    width: 290px;
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e6b329;
+    border-radius: 8px;
+    list-style: none;
+    display: inline-table;
+    margin: 25px;
+    
+
+}
+
+.boton{
+
+    text-align: center;
+    background-color: #1b1e22;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    padding: 7px;
+    border-radius: 6px;
+    margin: 8px;
+    cursor: pointer;
+    border-style:solid;
+    border-width: 0.5px;
+    border-color: #ffffff;
+
+}
+
+.boton:hover{
+
+    border-color: #e6b329;
+    background-color: #000000;
+    color: #e6b329;
+
+}
+
+.clasificacion{
+
+    list-style: none;
+    display: inline-flex;
+    text-align: center;
+    margin-right: 50px;
+    margin-bottom: 20px;
+
+}
+
+.boton-calif{
+
+    text-align: center;
+    background-color: #1b1e22;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    width: 38px;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 8px;
+    cursor: pointer;
+    border-style:solid;
+    border-width: 0.5px;
+    border-color: #ffffff;
+
+
+}
+
+.boton-calif:hover{
+
+    border-color: #e6b329;
+    background-color: #000000;
+    color: #e6b329;
+
+}
+
+
+@media (max-width: 600px){
+
+    .carta{
+
+        padding: 10px;
+        width: 190px;
+        
+    
+    }
+
+    .portada{
+
+        width: 170px;
+        height: 230px;
+
+    }
+
+    .boton{
+
+        font-size: 18px;
+
+    }
+
+    h1{
+
+        font-size: 35px;
+
+    }
+
+    h2{
+
+        font-size: 24px;
+
+    }
+
+    h4{
+
+        font-size: 20px;
+
+    }
+
+
+}
+
