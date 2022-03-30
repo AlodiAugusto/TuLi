@@ -5,7 +5,7 @@ let listaDeSeries =  [
 {id:4, nombre: "Dr.House",           genero: "Comedia Negra",            temporadas: "8 temporadas", img: "./img/house.jpg"},
 {id:5, nombre: "El Marginal",        genero: "Drama, Policial",          temporadas: "4 temporadas", img: "./img/marginal.jpg"},
 {id:6, nombre: "Shingeki No Kyojin", genero: "Acción, Anime",            temporadas: "4 temporadas", img: "./img/shingeki.png"},
-{id:7, nombre: "Silicon Valley",     genero: "Comedia, Sátira",                  temporadas: "3 temporadas", img: "./img/siliconvalley.jpg"},
+{id:7, nombre: "Silicon Valley",     genero: "Comedia, Sátira",          temporadas: "3 temporadas", img: "./img/siliconvalley.jpg"},
 {id:8, nombre: "Los Simpsons",       genero: "Comedia, Familiar",        temporadas: "38 temporadas",img: "./img/simpsons.jpg"},
 {id:9, nombre: "Los Soprano",        genero: "Drama, Thriller",          temporadas: "6 temporadas", img: "./img/sopranos.jpg"},
 {id:10, nombre: "Succession",        genero: "Drama, Comedia Negra",     temporadas: "3 temporadas", img: "./img/succession.jpg"},
@@ -123,20 +123,41 @@ function borrarSerie(idCarta, serieId){ // Función que en base al id de la cart
 
 }
 
-function mostrarTuLista(serie){  // Esto crea tu lista para que se vea en html
+function calificar(cartaId){
 
-        
+    let cartaActual = document.getElementById(cartaId)
+    let calificacion = document.getElementById("calificacion")
+    let calificacionElegida = parseInt(calificacion.options[calificacion.selectedIndex].value);
+    let textoCalificacion = document.createElement("p");
+    textoCalificacion.className = "textoCalificacion"
+    textoCalificacion.innerHTML = `Tu calificación es: ${calificacionElegida}/5`
+    textoAQuitar = cartaActual.lastChild
+    cartaActual.removeChild(textoAQuitar)
+    cartaActual.appendChild(textoCalificacion)
+
+}
+
+function mostrarTuLista(serie){  // Esto crea tu lista para que se vea en html
         
     let carta = document.createElement("div");
     carta.className = "carta"
     carta.id = serie.id
-    carta.innerHTML = `<h3>${serie.nombre}</h3>
+    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>
+    <h3>${serie.nombre}</h3>
     <li>Genero: ${serie.genero}</li><hr>
     <li>Duración: ${serie.temporadas}</li><hr>
-    <button class="boton" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>`
+    <p> 
+        <select class="calificacion" id="calificacion">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button class="boton" onclick="calificar(${carta.id})">Calificar</button>
+    </p>`
           
     tuLista.appendChild(carta)
-
 
 } 
 

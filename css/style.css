@@ -19,6 +19,8 @@ li{
 
     text-align: left;
     font-size: 19px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
 
 }
 
@@ -137,16 +139,6 @@ h5{
 
 }
 
-.clasificacion{
-
-    list-style: none;
-    display: inline-flex;
-    text-align: center;
-    margin-right: 50px;
-    margin-bottom: 20px;
-
-}
-
 .boton-calif{
 
     text-align: center;
@@ -174,27 +166,45 @@ h5{
 
 }
 
+.calificacion{
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    border-radius: 9px;
+    height: 30px;
+    width: 50px;
+    text-align: center;
+
+}
+
+.textoCalificacion{
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+
+}
 
 @media (max-width: 600px){
 
     .carta{
 
         padding: 10px;
-        width: 190px;
+        width: 240px;
         
     
     }
 
     .portada{
 
-        width: 170px;
-        height: 230px;
+        width: 180px;
+        height: 240px;
 
     }
 
     .boton{
 
-        font-size: 18px;
+        font-size: 20px;
 
     }
 
@@ -206,16 +216,9 @@ h5{
 
     h2{
 
-        font-size: 24px;
+        font-size: 25px;
 
     }
-
-    h4{
-
-        font-size: 20px;
-
-    }
-
 
 }
 
