@@ -126,7 +126,8 @@ function borrarSerie(idCarta, serieId){ // Función que en base al id de la cart
 function calificar(cartaId){
 
     let cartaActual = document.getElementById(cartaId)
-    let calificacion = document.getElementById("calificacion")
+    idCalificacion = `calificacion ${cartaId}`
+    let calificacion = document.getElementById(idCalificacion)
     let calificacionElegida = parseInt(calificacion.options[calificacion.selectedIndex].value);
     let textoCalificacion = document.createElement("p");
     textoCalificacion.className = "textoCalificacion"
@@ -147,7 +148,7 @@ function mostrarTuLista(serie){  // Esto crea tu lista para que se vea en html
     <li>Genero: ${serie.genero}</li><hr>
     <li>Duración: ${serie.temporadas}</li><hr>
     <p> 
-        <select class="calificacion" id="calificacion">
+        <select class="calificacion" id="calificacion ${carta.id}">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
