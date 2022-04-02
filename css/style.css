@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alatsi&family=Racing+Sans+One&display=swap');
 
 body{
 
@@ -10,26 +10,24 @@ body{
 .contenedor{
     
     text-align: center;
-    width: 75%;
+    width: 65%;
     margin: auto;
  
 }
 
 li{
 
-    text-align: left;
-    font-size: 19px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Alatsi', sans-serif;
+    margin: 5px;
 
 }
 
 h1{
 
     color: #e6b329;
-    font-family: 'Anton', sans-serif;
-    font-size: 40px;
-    font-weight: bold;
+    font-family: 'Racing Sans One', sans-serif;
+    font-size: 42px;
 
 }
 
@@ -44,17 +42,22 @@ h2{
 h3{
 
     color: rgb(255, 255, 255);
-    font-family:'Oswald', sans-serif;
-    font-size: 25px;
+    font-family: 'Alatsi', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-top: 5px;
 
 }
 
 h4{
 
     color: white;
-    font-family: 'Montserrat', serif;
-    font-size: 22px;
-    margin-top: 20px;
+    font-family: 'Alatsi', sans-serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 0px;
 
 
 }
@@ -62,7 +65,7 @@ h4{
 h5{
 
     color: rgb(255, 255, 255);
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Alatsi', sans-serif;
     font-size: 22px;
     margin-top: 20px;
     margin-bottom: 5px;
@@ -72,14 +75,14 @@ h5{
 .disponibles{
 
     display:inline-block;
-    padding: 15px;
+    margin: 20px;
 
 }
 
 .portada{
 
-    width: 190px;
-    height: 260px;
+    width: 160px;
+    height: 230px;
     border-style:solid;
     border-width: 2px;
     border-color: #ffffff;
@@ -96,12 +99,25 @@ h5{
 
 }
 
+.portada-carta{
+
+    width: 95px;
+    height: 125px;
+    border-radius: 8px;
+    border-style:dashed;
+    border-width: 1px;
+    border-color:#e6b329;
+    margin: 4px;
+
+}
+
 .carta{
 
-    padding: 15px;
-    background-color: #1b1b1b;
-    width: 290px;
-    font-family: 'Oswald', sans-serif;
+    padding: 10px;
+    background: rgb(33,33,33);
+    background: linear-gradient(29deg, rgba(33,33,33,1) 38%, rgba(40,45,51,1) 45%, rgba(25,28,31,1) 68%);
+    width: 20%;
+    height: auto;
     color: #ffffff;
     border-style: solid;
     border-width: 1px;
@@ -109,9 +125,9 @@ h5{
     border-radius: 8px;
     list-style: none;
     display: inline-table;
-    margin: 25px;
+    margin: 10px;
+    margin-bottom: 15px;
     
-
 }
 
 .boton{
@@ -119,11 +135,12 @@ h5{
     text-align: center;
     background-color: #1b1e22;
     color: white;
-    font-family: 'Oswald', sans-serif;
-    font-size: 20px;
-    padding: 7px;
+    font-family: 'Alatsi', sans-serif;
+    font-size: 18px;
+    padding: 4px;
     border-radius: 6px;
-    margin: 8px;
+    height: 35px;
+    margin: 6px;
     cursor: pointer;
     border-style:solid;
     border-width: 0.5px;
@@ -144,10 +161,9 @@ h5{
     text-align: center;
     background-color: #1b1e22;
     color: white;
-    font-family: 'Oswald', sans-serif;
-    font-size: 20px;
-    width: 38px;
-    padding: 8px;
+    font-family: 'Alatsi', sans-serif;
+    font-size: 16px;
+    padding: 4px;
     border-radius: 6px;
     margin: 8px;
     cursor: pointer;
@@ -169,9 +185,8 @@ h5{
 .calificacion{
 
     font-family: 'Oswald', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     border-radius: 9px;
-    height: 30px;
     width: 50px;
     text-align: center;
 
@@ -180,27 +195,42 @@ h5{
 .textoCalificacion{
 
     font-family: 'Oswald', sans-serif;
-    font-size: 26px;
+    font-size: 21px;
     font-weight: bold;
 
 }
 
-@media (max-width: 600px){
+@media (max-width: 1200px){
 
     .carta{
 
         padding: 10px;
         width: 240px;
+        margin: 15px;
         
     
     }
 
-    .portada{
+    .disponibles{
 
-        width: 180px;
-        height: 240px;
+        margin: 10px;
 
     }
+
+    .portada{
+
+        width: 160px;
+        height: 210px;
+
+    }
+
+    .portada-carta{
+
+        width: 110px;
+        height: 150px;
+
+    }
+
 
     .boton{
 
@@ -220,5 +250,107 @@ h5{
 
     }
 
+    h4{
+
+        font-size: 18px;
+
+    }
+
+    .contenedor{
+    
+        text-align: center;
+        width: 100%;
+     
+    }
+
 }
 
+@media (max-width: 640px){
+
+    .carta{
+
+        padding: 5px;
+        width: 140px;
+        margin: 8px;
+        
+    
+    }
+
+    .disponibles{
+
+        margin: 20px;
+
+    }
+
+    .portada{
+
+        width: 120px;
+        height: 160px;
+
+    }
+
+    .portada-carta{
+
+        width: 80px;
+        height: 110px;
+
+    }
+
+
+    .boton{
+
+        font-size: 18px;
+
+    }
+
+    h1{
+
+        font-size: 35px;
+
+    }
+
+    h2{
+
+        font-size: 20px;
+
+    }
+
+    h3{
+
+        font-size: 19px;
+
+    }
+
+    h4{
+
+        font-size: 13px;
+
+    }
+
+    li{
+
+        font-size: 15px;
+
+    }
+
+    .calificacion{
+
+        font-size: 18px;
+        margin: px;
+
+    }
+
+    .textoCalificacion{
+
+        font-size: 15px;
+
+    }
+
+    .contenedor{
+    
+        text-align: center;
+        width: 100%;
+     
+    }
+
+}
