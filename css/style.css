@@ -185,7 +185,7 @@ h5{
 .calificacion{
 
     font-family: 'Oswald', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     border-radius: 9px;
     width: 50px;
     text-align: center;
@@ -197,6 +197,7 @@ h5{
     font-family: 'Oswald', sans-serif;
     font-size: 21px;
     font-weight: bold;
+    color: #e6b329;
 
 }
 
@@ -205,7 +206,7 @@ h5{
     .carta{
 
         padding: 10px;
-        width: 240px;
+        width: 260px;
         margin: 15px;
         
     
@@ -269,8 +270,8 @@ h5{
 
     .carta{
 
-        padding: 5px;
-        width: 140px;
+        padding: 8px;
+        width: 70%;
         margin: 8px;
         
     
@@ -293,6 +294,8 @@ h5{
 
         width: 80px;
         height: 110px;
+        margin-right: 100px;
+        margin-top: 10px;
 
     }
 
@@ -300,6 +303,15 @@ h5{
     .boton{
 
         font-size: 18px;
+
+    }
+    
+    .boton-eliminar{
+
+        position: absolute;
+        margin: 4%;
+        margin-top: 50px;
+        
 
     }
 
@@ -317,32 +329,32 @@ h5{
 
     h3{
 
-        font-size: 19px;
+        font-size: 20px;
 
     }
 
     h4{
 
-        font-size: 13px;
+        font-size: 15px;
 
     }
 
     li{
 
-        font-size: 15px;
+        font-size: 16px;
 
     }
 
     .calificacion{
 
-        font-size: 18px;
-        margin: px;
+        font-size: 20px;
+        margin: 2px;
 
     }
 
     .textoCalificacion{
 
-        font-size: 15px;
+        font-size: 20px;
 
     }
 

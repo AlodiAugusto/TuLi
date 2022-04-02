@@ -85,7 +85,15 @@ function verificarSeries(){
 
         tuListaDeSeries.forEach(serie => {
             
-            mostrarTuListaActualizada(serie)
+            if(serie.calificacion == null){
+
+                mostrarTuLista(serie)
+
+            }else{
+
+                mostrarTuListaActualizada(serie)
+
+            } 
 
         });
     }
@@ -176,7 +184,7 @@ function mostrarTuLista(serie){  // Esto crea tu lista para que se vea en html
     let carta = document.createElement("div");
     carta.className = "carta"
     carta.id = serie.id
-    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>
+    carta.innerHTML = `<button class="boton boton-eliminar" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>
     <div><img class="portada-carta" src="${serie.img}"></div>
     <h3>${serie.nombre}</h3>
     <li>Genero: ${serie.genero}</li>
