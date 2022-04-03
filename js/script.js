@@ -70,8 +70,8 @@ function seriesVisibles() {  //El evento click para los botones que cambian las 
             contador = 1
             inicio = 0
             final  = 4
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
             tandaDeSeries(inicio, final);
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
 
         }
 
