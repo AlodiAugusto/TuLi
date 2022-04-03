@@ -2,16 +2,27 @@
 
 body{
 
-    background: rgb(54, 60, 68);  
-    background: radial-gradient(circle, rgb(24, 32, 66) 0%, rgb(52, 54, 58) 100%);
+    background-color: #1b1e22;
 
 }
 
 .contenedor{
     
+    background: rgb(54, 60, 68);  
+    background: radial-gradient(circle, rgb(24, 32, 66) 0%, rgb(52, 54, 58) 100%);
     text-align: center;
     width: 65%;
+    height: 100%;
+    padding: 10px;
+    border-style:dashed;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color:#e6b329;
+    border-top: none;
+    border-bottom: none;
     margin: auto;
+    margin-top: -15px;
+    margin-bottom: -15px;
  
 }
 
@@ -28,6 +39,7 @@ h1{
     color: #e6b329;
     font-family: 'Racing Sans One', sans-serif;
     font-size: 42px;
+    margin-top: -5px;
 
 }
 
@@ -36,6 +48,7 @@ h2{
     color: rgb(255, 255, 255);
     font-family:'Montserrat', sans-serif;
     font-size: 32px;
+    margin-top: -5px;
 
 }
 
@@ -43,9 +56,9 @@ h3{
 
     color: rgb(255, 255, 255);
     font-family: 'Alatsi', sans-serif;
-    font-size: 22px;
+    font-size: 23px;
     font-weight: 400;
-    margin-top: 5px;
+    margin-top: 2px;
 
 }
 
@@ -75,7 +88,7 @@ h5{
 .disponibles{
 
     display:inline-block;
-    margin: 20px;
+    margin: 15px;
 
 }
 
@@ -113,10 +126,10 @@ h5{
 
 .carta{
 
-    padding: 10px;
+    padding: 8px;
     background: rgb(33,33,33);
     background: linear-gradient(29deg, rgba(33,33,33,1) 38%, rgba(40,45,51,1) 45%, rgba(25,28,31,1) 68%);
-    width: 20%;
+    width: 18%;
     height: auto;
     color: #ffffff;
     border-style: solid;
@@ -126,7 +139,7 @@ h5{
     list-style: none;
     display: inline-table;
     margin: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     
 }
 
@@ -136,7 +149,7 @@ h5{
     background-color: #1b1e22;
     color: white;
     font-family: 'Alatsi', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     padding: 4px;
     border-radius: 6px;
     height: 35px;
@@ -203,6 +216,12 @@ h5{
 
 @media (max-width: 1200px){
 
+    .contenedor{
+
+        padding: 0px;
+
+    }
+
     .carta{
 
         padding: 10px;
@@ -268,6 +287,12 @@ h5{
 
 @media (max-width: 640px){
 
+    .contenedor{
+
+        padding: 0px;
+
+    }
+
     .carta{
 
         padding: 8px;
@@ -312,7 +337,7 @@ h5{
 
     h2{
 
-        font-size: 20px;
+        font-size: 18px;
 
     }
 
@@ -324,7 +349,7 @@ h5{
 
     h4{
 
-        font-size: 15px;
+        font-size: 13px;
 
     }
 

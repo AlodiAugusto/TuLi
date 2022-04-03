@@ -23,7 +23,7 @@ const tuLista = document.getElementById("tu-lista"); // Div de las series selecc
 
 const botonSig = document.getElementById("siguiente"); // Boton siguientes series disponibles
 
-const botonAnt = document.getElementById("anterior"); // Boton anteriores series disponibles
+const cantidad = document.getElementById("cantidad"); 
 
 let calificacionesHastaAhora = [];
 
@@ -49,27 +49,31 @@ function seriesVisibles() {  //El evento click para los botones que cambian las 
     
     let inicio = 0 // Primeras series que se muestran
     let final = 4
+    let contador = 1
+
+    cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
 
     tandaDeSeries(inicio, final);
-
 
         contenedor.addEventListener("click", (e)=>{
 
         if(e.target == botonSig && (final != 12)){ // Muestra mas series, hasta las que hay disponibes, es decir 10(el final)
             
+            contador++
             seriesCartelera.innerHTML = null
             inicio += 4
             final  += 4
             tandaDeSeries(inicio,  final)
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
 
-
-
-        } else if(e.target == botonAnt && (inicio != 0)){ // Muetra menos series, hasta las primeras (inicio 0)
+        } else if(e.target == botonSig && (final == 12)){
 
             seriesCartelera.innerHTML = null
-            inicio -= 4
-            final  -= 4
-            tandaDeSeries(inicio,  final)
+            contador = 1
+            inicio = 0
+            final  = 4
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
+            tandaDeSeries(inicio, final);
 
         }
 
@@ -147,6 +151,7 @@ function calificar(cartaId){
     cartaActual.appendChild(textoCalificacion)
     calificacionesHastaAhora.push(`Tu calificación es: ${calificacionElegida}/5`)
     
+    alert("tu calificación fue exitosa")
     guardarCalificacion(calificacionElegida, cartaId)
     actualizarStorage(tuListaDeSeries)
 
