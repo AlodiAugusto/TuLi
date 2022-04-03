@@ -25,8 +25,6 @@ const botonSig = document.getElementById("siguiente"); // Boton siguientes serie
 
 const cantidad = document.getElementById("cantidad"); 
 
-let calificacionesHastaAhora = [];
-
 function tandaDeSeries(desde, hasta){ // Mostrar una tanda de series de la listaDeSeries
 
     for(let i = desde; i < hasta; i++) {
@@ -89,15 +87,7 @@ function verificarSeries(){
 
         tuListaDeSeries.forEach(serie => {
             
-            if(serie.calificacion == null){
-
-                mostrarTuLista(serie)
-
-            }else{
-
-                mostrarTuListaActualizada(serie)
-
-            } 
+            serie.calificacion == null ? mostrarTuLista(serie) : mostrarTuListaActualizada(serie)
 
         });
     }
@@ -145,13 +135,19 @@ function calificar(cartaId){
     let calificacionElegida = parseInt(calificacion.options[calificacion.selectedIndex].value);
     let textoCalificacion = document.createElement("p");
     textoCalificacion.className = "textoCalificacion"
-    textoCalificacion.innerHTML = `Tu calificación es: ${calificacionElegida}/5`
+    textoCalificacion.innerHTML = `${calificacionElegida}☆`
     textoAQuitar = cartaActual.lastChild
     cartaActual.removeChild(textoAQuitar)
     cartaActual.appendChild(textoCalificacion)
-    calificacionesHastaAhora.push(`Tu calificación es: ${calificacionElegida}/5`)
     
-    alert("tu calificación fue exitosa")
+    Swal.fire(
+        {title: "Tu calificación fue exitosa",
+        background: "#1b1e22",
+        icon: "success",
+        color: "white",
+        confirmButtonColor: "#e6b329",
+        width: "550px"}
+      )
     guardarCalificacion(calificacionElegida, cartaId)
     actualizarStorage(tuListaDeSeries)
 
@@ -161,7 +157,7 @@ function calificar(cartaId){
 function guardarCalificacion(calificacion, id){
 
     indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.id === id)
-    calificacionActual = {calificacion: `Tu calificación es: ${calificacion}/5`}
+    calificacionActual = {calificacion: `${calificacion}☆`}
     Object.assign(tuListaDeSeries[indiceEncontrado], calificacionActual)
  
 
