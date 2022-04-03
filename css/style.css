@@ -23,6 +23,7 @@ body{
     margin: auto;
     margin-top: -15px;
     margin-bottom: -15px;
+    padding-bottom: 5%;
  
 }
 
@@ -127,7 +128,7 @@ h5{
     padding: 8px;
     background: rgb(33,33,33);
     background: linear-gradient(29deg, rgba(33,33,33,1) 38%, rgba(40,45,51,1) 45%, rgba(25,28,31,1) 68%);
-    width: 18%;
+    width: 20%;
     height: auto;
     color: #ffffff;
     border-style: solid;
@@ -216,7 +217,8 @@ h5{
 
     .contenedor{
 
-        padding: 0px;
+        padding-bottom: 50px;
+        padding-top: 10px;
 
     }
 
@@ -287,7 +289,8 @@ h5{
 
     .contenedor{
 
-        padding: 0px;
+        padding-bottom: 50px;
+        padding-top: 10px;
 
     }
 
