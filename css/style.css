@@ -13,7 +13,6 @@ body{
     text-align: center;
     width: 65%;
     height: 100%;
-    padding: 10px;
     border-style:dashed;
     border-width: 1px;
     border-radius: 3px;
@@ -23,7 +22,8 @@ body{
     margin: auto;
     margin-top: -15px;
     margin-bottom: -15px;
-    padding-bottom: 5%;
+    padding-bottom: 14%;
+    padding-top: 1%;
  
 }
 
@@ -217,8 +217,8 @@ h5{
 
     .contenedor{
 
-        padding-bottom: 50px;
-        padding-top: 10px;
+        padding-bottom: 6%;
+        padding-top: 2%;
 
     }
 
@@ -289,8 +289,8 @@ h5{
 
     .contenedor{
 
-        padding-bottom: 50px;
-        padding-top: 10px;
+        padding-bottom: 6%;
+        padding-top: 2%;
 
     }
 
