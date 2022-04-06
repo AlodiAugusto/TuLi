@@ -8,7 +8,7 @@ let listaDeSeries =  [
 {id:6, nombre: "Silicon Valley",     genero: "Comedia, Sátira",          temporadas: "3 temporadas", img: "./img/siliconvalley.jpg"},
 {id:7, nombre: "Los Simpsons",       genero: "Comedia, Familiar",        temporadas: "38 temporadas",img: "./img/simpsons.jpg"},
 {id:8, nombre: "Los Soprano",        genero: "Drama, Thriller",          temporadas: "6 temporadas", img: "./img/sopranos.jpg"},
-{id:9, nombre: "Succession",        genero: "Drama, Comedia Negra",     temporadas: "3 temporadas", img: "./img/succession.jpg"},
+{id:9, nombre: "Succession",         genero: "Drama, Comedia Negra",     temporadas: "3 temporadas", img: "./img/succession.jpg"},
 {id:10, nombre: "Kimetsu No Yaiba",  genero: "Acción, Aventura, Shonen", temporadas: "2 temporadas", img: "./img/kimetsu.jpg"},
 {id:11, nombre: "Death Note",        genero: "Drama, Policial, Seinen",  temporadas: "2 temporadas", img: "./img/deathnote.jpg"},
 ]; 
@@ -46,10 +46,10 @@ function tandaDeSeries(desde, hasta){ // Mostrar una tanda de series de la lista
 function seriesVisibles() {  //El evento click para los botones que cambian las imagenes de series
     
     let inicio = 0 // Primeras series que se muestran
-    let final = 4
+    let final = 6
     let contador = 1
 
-    cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
+    cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
 
     tandaDeSeries(inicio, final);
 
@@ -59,19 +59,19 @@ function seriesVisibles() {  //El evento click para los botones que cambian las 
             
             contador++
             seriesCartelera.innerHTML = null
-            inicio += 4
-            final  += 4
+            inicio += 6
+            final  += 6
             tandaDeSeries(inicio,  final)
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
 
         } else if(e.target == botonSig && (final == 12)){
 
             seriesCartelera.innerHTML = null
             contador = 1
             inicio = 0
-            final  = 4
+            final  = 6
             tandaDeSeries(inicio, final);
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 4}`
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
 
         }
 
@@ -111,6 +111,16 @@ function agregarATuLista(indice){ // Esto suma la serie seleccionada a tu lista
         tuListaDeSeries.push(serieAgregar);
         mostrarTuLista(serieAgregar);
         actualizarStorage(tuListaDeSeries);
+        Toastify({
+            text:`${serieAgregar.nombre} fue agregada a tu lista` ,
+            duration: 3000,
+            gravity: "top", 
+            position: "center",
+            className: "cartelito",
+            style: {
+              background: "linear-gradient(to right, #e6b329, #ae830a)",
+            }
+          }).showToast();
         
 
     }
@@ -140,14 +150,17 @@ function calificar(cartaId){
     cartaActual.removeChild(textoAQuitar)
     cartaActual.appendChild(textoCalificacion)
     
-    Swal.fire(
-        {title: "Tu calificación fue exitosa",
-        background: "#1b1e22",
-        icon: "success",
-        color: "white",
-        confirmButtonColor: "#e6b329",
-        width: "550px"}
-      )
+    Toastify({
+        text: "Tu calificación fue exitosa",
+        duration: 3000,
+        gravity: "top", 
+        position: "center",
+        className: "cartelito",
+        style: {
+          background: "linear-gradient(to right, #e6b329, #ae830a)",
+        }
+      }).showToast();
+
     guardarCalificacion(calificacionElegida, cartaId)
     actualizarStorage(tuListaDeSeries)
 
@@ -157,8 +170,8 @@ function calificar(cartaId){
 function guardarCalificacion(calificacion, id){
 
     indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.id === id)
-    calificacionActual = {calificacion: `${calificacion}☆`}
-    Object.assign(tuListaDeSeries[indiceEncontrado], calificacionActual)
+    calificacionActual = `${calificacion}☆`
+    tuListaDeSeries[indiceEncontrado].calificacion = calificacionActual
  
 
 }
