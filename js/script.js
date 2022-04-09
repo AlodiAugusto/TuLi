@@ -1,4 +1,8 @@
+let listaDeSeries = [];
+
 let tuListaDeSeries = [];
+
+let seriesBuscadas = [];
 
 const contenedor = document.getElementById("contenedor"); // Div contenedor general
 
@@ -18,9 +22,9 @@ const serieBuscada = document.getElementById("buscada");
 
 const imagenes = "https://image.tmdb.org/t/p/w500"
 
-let listaDeSeries = [];
-
 let numPag = 1;
+
+let contador = 0;
 
 function buscarSerie() {
 
@@ -36,18 +40,27 @@ function buscarSerie() {
 
             fetch(url + apiKey + busqueda).then(response => response.json()).then(serie => {
 
+
                 console.log(serie);
                 listaDeSeries.push(serie.results[0])
                 serie = serie.results[0]
-                serie.ident = listaDeSeries.length - 1
-                let serieEncontrada = document.createElement("div")
-                serieEncontrada.id = `busqueda${serie.ident}`
-                serieEncontrada.className = "disponibles"
-                serieEncontrada.innerHTML = `<button class="boton boton-busqueda" onclick="quitarBusqueda(${serieEncontrada.id})">X</button>
-                    <img src="${imagenes}${serie.poster_path}" class="portada" onclick="agregarATuLista(${serie.ident})">
-                    <h4 class="titulo-busqueda">${serie.name}</h4>`
+                serie.ident = tuListaDeSeries.length - 1
+                
+                if(noEsRepetida(serie, seriesBuscadas)){
+                    
+                    let serieEncontrada = document.createElement("div")
+                    serieEncontrada.id = `busqueda${serie.ident}`
+                    serieEncontrada.className = "disponibles"
+                    serieEncontrada.innerHTML = `<button class="boton boton-busqueda" onclick="quitarBusqueda(${serieEncontrada.id})">X</button>
+                        <img src="${imagenes}${serie.poster_path}" class="portada" onclick="agregarATuLista(${serie.ident})">
+                        <h4 class="titulo-busqueda">${serie.name}</h4>`
 
-                serieBuscada.appendChild(serieEncontrada)
+                   
+                    serieBuscada.appendChild(serieEncontrada)
+                    seriesBuscadas.push(serie)
+                    contador++
+
+                }
 
             })
 
@@ -122,8 +135,9 @@ function seriesVisibles(listaDeSeries) { //El evento click para los botones que 
     let inicio = 0 // Primeras series que se muestran
     let final = 6
     let contador = 1
+    let cantidadPags = listaDeSeries.length
 
-    cantidad.innerHTML = `${contador} / ${listaDeSeries.length}`
+    cantidad.innerHTML = `${contador} / ${cantidadPags}`
 
     tandaDeSeries(inicio, final, listaDeSeries);
 
@@ -136,7 +150,7 @@ function seriesVisibles(listaDeSeries) { //El evento click para los botones que 
             inicio += 6
             final += 6
             tandaDeSeries(inicio, final, listaDeSeries)
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
+            cantidad.innerHTML = `${contador} / ${cantidadPags}`
 
         } else if (e.target == botonAnt && (inicio != 0)) {
 
@@ -145,7 +159,7 @@ function seriesVisibles(listaDeSeries) { //El evento click para los botones que 
             inicio -= 6
             final -= 6
             tandaDeSeries(inicio, final, listaDeSeries);
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
+            cantidad.innerHTML = `${contador} / ${cantidadPags}`
 
         } else if (e.target == botonSig && (final == 120)) {
 
@@ -154,7 +168,7 @@ function seriesVisibles(listaDeSeries) { //El evento click para los botones que 
             inicio = 0
             final = 6
             tandaDeSeries(inicio, final, listaDeSeries);
-            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
+            cantidad.innerHTML = `${contador} / ${cantidadPags}`
 
         }
 
@@ -178,9 +192,9 @@ function verificarSeries() {
 
 }
 
-function noEsRepetida(serieAgregar) { // Verifica tuLista para ver que no haya repetidas, a partir del id de la serie
+function noEsRepetida(elementoAgregar, lista) { // Verifica tuLista para ver que no haya repetidas, a partir del id de la serie
 
-    indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.id === serieAgregar.id)
+    indiceEncontrado = lista.findIndex(elemento => elemento.id === elementoAgregar.id)
     return indiceEncontrado === -1
 
 }
@@ -190,7 +204,7 @@ function agregarATuLista(indice) { // Esto suma la serie seleccionada a tu lista
 
     serieAgregar = listaDeSeries[indice];
 
-    if (noEsRepetida(serieAgregar)) {
+    if (noEsRepetida(serieAgregar, tuListaDeSeries)) {
 
         tuListaDeSeries.push(serieAgregar);
         mostrarTuLista(serieAgregar);
@@ -269,7 +283,8 @@ function mostrarTuListaActualizada(serie) { // Esto crea tu lista para que se ve
         <div><img class="portada-carta" src="${imagenes}${serie.poster_path}"></div>
         <h3>${serie.name}</h3>
         <li>Fecha de inicio: ${serie.first_air_date}</li>
-        <li>País: ${serie.origin_country}</li>
+        <li>Idioma original: ${serie.original_language.toUpperCase()}</li>  
+        <li>País de origen: ${serie.origin_country}</li>
         <button class="boton" onclick="mostrarSinopsis(${carta.id})">Sinopsis</button>
         <p class="textoCalificacion">${serie.calificacion}</p>`
 
@@ -286,8 +301,9 @@ function mostrarTuLista(serie) { // Esto crea tu lista para que se vea en html
     carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.ident})">Eliminar</button>
         <div><img class="portada-carta" src="${imagenes}${serie.poster_path}"></div>
         <h3>${serie.name}</h3>
-        <li>Fecha de inicio: ${serie.first_air_date}</li> 
-        <li>País: ${serie.origin_country}</li>
+        <li>Fecha de inicio: ${serie.first_air_date}</li>
+        <li>Idioma original: ${serie.original_language.toUpperCase()}</li>  
+        <li>País de origen: ${serie.origin_country}</li>
         <button class="boton" onclick="mostrarSinopsis(${carta.id})">Sinopsis</button>
         <p> 
             <select class="calificacion" id="calificacion ${carta.id}">
