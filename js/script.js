@@ -49,7 +49,7 @@ function buscarSerie() {
                     let serieEncontrada = document.createElement("div")
                     serieEncontrada.id = `busqueda${serie.ident}`
                     serieEncontrada.className = "disponibles"
-                    serieEncontrada.innerHTML = `<button class="boton boton-busqueda" onclick="quitarBusqueda(${serieEncontrada.id})">X</button>
+                    serieEncontrada.innerHTML = `<button class="boton boton-busqueda" onclick="quitarBusqueda(${serieEncontrada.id}, ${serie.ident})">X</button>
                         <img src="${imagenes}${serie.poster_path}" class="portada" onclick="agregarATuLista(${serie.ident})">
                         <h4 class="titulo-busqueda">${serie.name}</h4>`
 
@@ -66,10 +66,12 @@ function buscarSerie() {
     })
 }
 
-function quitarBusqueda(id){
+function quitarBusqueda(id, serieId){
 
+    indiceEncontrado = seriesBuscadas.findIndex(elemento => elemento.ident === serieId)
     busquedaAQuitar = id
     serieBuscada.removeChild(busquedaAQuitar)
+    seriesBuscadas.splice(indiceEncontrado, 1)
 
 }
 
