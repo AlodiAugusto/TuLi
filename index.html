@@ -10,17 +10,23 @@
 </head>
 <body>
     <div id="contenedor" class="contenedor">
-        <h1>Tu-Li</h1>
-        <h2>Selecciona tus series pendientes</h2>
-            <div id="cartelera">
+        <h1>Tu-Li</h1><hr>
+        <h2>Busca tus series pendientes</h2>
+            <input type="text" placeholder="Ingresa una serie" id="buscador" class="buscador">
+            <div id="buscada">
+            </div><hr>
+            <h2>Series populares</h2>
+            <div id="cartelera">  
             </div>
-            <h3 id="cantidad"></h3>
-            <button type="button" id="siguiente" class="boton">Mas series</button>
+            <h3 class="cantidad" id="cantidad"></h3>
+            <button type="button" id="anterior" class="boton">Volver</button>    
+            <button type="button" id="siguiente" class="boton">Mas series</button><hr>        
         <div class="tu-lista" id="tu-lista">
             <h2>Tu Lista de series pendientes</h2>
         </div>
     </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/script.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

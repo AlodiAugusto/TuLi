@@ -11,7 +11,7 @@ body{
     background: rgb(54, 60, 68);  
     background: radial-gradient(circle, rgb(24, 32, 66) 0%, rgb(52, 54, 58) 100%);
     text-align: center;
-    width: 65%;
+    width: 75%;
     height: 100%;
     border-style:dashed;
     border-width: 1px;
@@ -22,17 +22,20 @@ body{
     margin: auto;
     margin-top: -15px;
     margin-bottom: -15px;
-    padding-bottom: 15%;
+    padding-bottom: 50%;
     padding-top: 1%;
  
 }
 
 li{
 
-    font-size: 16px;
-    font-family: 'Alatsi', sans-serif;
-    margin: 5px;
-
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5px;
+    word-spacing: 2px;
+    font-weight: 500;
+    list-style: none;
+    text-align: justify;
 }
 
 h1{
@@ -58,7 +61,7 @@ h3{
     font-family: 'Alatsi', sans-serif;
     font-size: 22px;
     font-weight: 400;
-    margin-top: 2px;
+    margin-top: 15px;
 
 }
 
@@ -68,34 +71,43 @@ h4{
     font-family: 'Alatsi', sans-serif;
     font-size: 18px;
     font-weight: 400;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    text-align: left;
+    max-width: 200px;
+    margin-top: 270px;
+    position: absolute;
 
+}
+
+.cantidad{
+
+    margin-top: 45px;
 
 }
 
-h5{
+.buscador{
 
-    color: rgb(255, 255, 255);
-    font-family: 'Alatsi', sans-serif;
-    font-size: 22px;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
 }
+
 
 .disponibles{
 
-    display:inline-block;
+    display:inline-flex;
     margin: 15px;
+    margin-bottom: 40px;
 
 }
 
 .portada{
 
-    width: 160px;
-    height: 230px;
+    width: 185px;
+    height: 250px;
     border-style:solid;
     border-width: 2px;
     border-color: #ffffff;
@@ -114,8 +126,8 @@ h5{
 
 .portada-carta{
 
-    width: 95px;
-    height: 125px;
+    width: 120px;
+    height: 160px;
     border-radius: 8px;
     border-style:dashed;
     border-width: 1px;
@@ -126,20 +138,18 @@ h5{
 
 .carta{
 
-    padding: 8px;
+    padding: 12px;
     background: rgb(33,33,33);
     background: linear-gradient(29deg, rgba(33,33,33,1) 38%, rgba(40,45,51,1) 45%, rgba(25,28,31,1) 68%);
     width: 20%;
-    height: auto;
     color: #ffffff;
     border-style: solid;
     border-width: 1px;
     border-color: #e6b329;
     border-radius: 8px;
     list-style: none;
-    display: inline-table;
+    display: inline-block;
     margin: 15px;
-    margin-bottom: 10px;
     
 }
 
@@ -149,10 +159,10 @@ h5{
     background-color: #1b1e22;
     color: white;
     font-family: 'Alatsi', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     padding: 4px;
     border-radius: 6px;
-    height: 35px;
+    height: auto;
     margin: 6px;
     cursor: pointer;
     border-style:solid;
@@ -169,13 +179,22 @@ h5{
 
 }
 
+.boton-busqueda{
+
+    display: block;
+    height: 30px;
+    width: 30px;
+    padding: 1%;
+
+}
+
 .boton-calif{
 
     text-align: center;
     background-color: #1b1e22;
     color: white;
     font-family: 'Alatsi', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     padding: 4px;
     border-radius: 6px;
     margin: 8px;
@@ -208,9 +227,9 @@ h5{
 .textoCalificacion{
 
     font-family: 'Domine', sans-serif;
-    font-size: 25px;
-    margin: 4px;
-    letter-spacing: 5px;
+    font-size: 18px;
+    margin: 8px;
+    letter-spacing: 2px;
     font-weight: bold;
     color: #e6b329;
 
@@ -223,6 +242,13 @@ h5{
     color: #1b1e22;
     font-weight: bold;
     border-radius: 6px;
+
+}
+
+.titulo-busqueda{
+
+    margin-top: 260px;
+    margin-left: 50px;
 
 }
 
@@ -247,7 +273,7 @@ h5{
 
     .disponibles{
 
-        margin: 10px;
+        margin: 20px;
 
     }
 
@@ -287,6 +313,15 @@ h5{
     h4{
 
         font-size: 18px;
+        margin-top: 220px;
+        max-width: 160px;
+
+    }
+
+    .titulo-busqueda{
+
+        margin-top: 220px;
+        margin-left: 40px;
 
     }
 
@@ -310,7 +345,7 @@ h5{
 
     .carta{
 
-        padding: 4px;
+        padding: 10px;
         width: 70%;
         margin: 5px;
         display: inline-table;
@@ -320,28 +355,29 @@ h5{
 
     .disponibles{
 
-        margin: 27px;
+        margin: 25px;
+        display: inline-table;
 
     }
 
     .portada{
 
-        width: 110px;
-        height: 150px;
+        width: 100px;
+        height: 140px;
 
     }
 
     .portada-carta{
 
-        width: 80px;
-        height: 110px;
+        width: 95px;
+        height: 120px;
 
     }
 
 
     .boton{
 
-        font-size: 18px;
+        font-size: 16px;
 
     }
 
@@ -359,33 +395,48 @@ h5{
 
     h3{
 
-        font-size: 18px;
+        font-size: 20px;
 
     }
 
     h4{
 
-        font-size: 14px;
+        font-size: 16px;
         text-align: center;
+        margin-top: 2px;
+        max-width: 100px;
+
+    }
+
+    .titulo-busqueda{
+
+        margin-top: 2px;
+        margin-left: 10px;
 
     }
 
     li{
 
-        font-size: 16px;
+        font-size: 15px;
 
     }
 
     .calificacion{
 
-        font-size: 20px;
+        font-size: 18px;
         margin: 2px;
+
+    }
+
+    .boton-calif{
+
+        font-size: 18px;
 
     }
 
     .textoCalificacion{
 
-        font-size: 20px;
+        font-size: 16px;
 
     }
 

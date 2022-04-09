@@ -1,76 +1,159 @@
-let listaDeSeries =  [
-{id:0, nombre: "Breaking Bad",       genero: "Drama, Thriller",          temporadas: "5 temporadas", img: "./img/breakingbad.jpg",},
-{id:1, nombre: "Euphoria",           genero: "Drama, Adolescencia",      temporadas: "2 temporadas", img: "./img/euphoria.jpg"},
-{id:2, nombre: "Game Of Thrones",    genero: "Fantasía Epica, Politica", temporadas: "7 temporadas", img: "./img/got.jpg"},
-{id:3, nombre: "Dr.House",           genero: "Comedia Negra",            temporadas: "8 temporadas", img: "./img/house.jpg"},
-{id:4, nombre: "El Marginal",        genero: "Drama, Policial",          temporadas: "4 temporadas", img: "./img/marginal.jpg"},
-{id:5, nombre: "Shingeki No Kyojin", genero: "Acción, Seinen",            temporadas: "4 temporadas", img: "./img/shingeki.png"},
-{id:6, nombre: "Silicon Valley",     genero: "Comedia, Sátira",          temporadas: "3 temporadas", img: "./img/siliconvalley.jpg"},
-{id:7, nombre: "Los Simpsons",       genero: "Comedia, Familiar",        temporadas: "38 temporadas",img: "./img/simpsons.jpg"},
-{id:8, nombre: "Los Soprano",        genero: "Drama, Thriller",          temporadas: "6 temporadas", img: "./img/sopranos.jpg"},
-{id:9, nombre: "Succession",         genero: "Drama, Comedia Negra",     temporadas: "3 temporadas", img: "./img/succession.jpg"},
-{id:10, nombre: "Kimetsu No Yaiba",  genero: "Acción, Aventura, Shonen", temporadas: "2 temporadas", img: "./img/kimetsu.jpg"},
-{id:11, nombre: "Death Note",        genero: "Drama, Policial, Seinen",  temporadas: "2 temporadas", img: "./img/deathnote.jpg"},
-]; 
-
 let tuListaDeSeries = [];
 
 const contenedor = document.getElementById("contenedor"); // Div contenedor general
 
-const seriesCartelera = document.getElementById("cartelera"); // Div contenedor de las series disponibles
+const cartelera = document.getElementById("cartelera"); // Div contenedor de las series disponibles
 
 const tuLista = document.getElementById("tu-lista"); // Div de las series seleccionadas
 
 const botonSig = document.getElementById("siguiente"); // Boton siguientes series disponibles
 
-const cantidad = document.getElementById("cantidad"); 
+const botonAnt = document.getElementById("anterior");
 
-function tandaDeSeries(desde, hasta){ // Mostrar una tanda de series de la listaDeSeries
+const cantidad = document.getElementById("cantidad");
 
-    for(let i = desde; i < hasta; i++) {
-        
-        serie = listaDeSeries[i]
+let input = document.getElementById("buscador");
+
+const serieBuscada = document.getElementById("buscada");
+
+const imagenes = "https://image.tmdb.org/t/p/w500"
+
+let listaDeSeries = [];
+
+let numPag = 1;
+
+function buscarSerie() {
+
+    contenedor.addEventListener("keydown", e => {
+
+        if (input.value != "" && e.key === "Enter") {
+
+            const url = "https://api.themoviedb.org/3/search/tv?api_key="
+
+            const apiKey = "b8abc2a29098bd89227225c45829c229"
+
+            const busqueda = `&language=es-MX&page=1&include_adult=false&query=${input.value}`
+
+            fetch(url + apiKey + busqueda).then(response => response.json()).then(serie => {
+
+                console.log(serie);
+                listaDeSeries.push(serie.results[0])
+                serie = serie.results[0]
+                serie.ident = listaDeSeries.length - 1
+                let serieEncontrada = document.createElement("div")
+                serieEncontrada.id = `busqueda${serie.ident}`
+                serieEncontrada.className = "disponibles"
+                serieEncontrada.innerHTML = `<button class="boton boton-busqueda" onclick="quitarBusqueda(${serieEncontrada.id})">X</button>
+                    <img src="${imagenes}${serie.poster_path}" class="portada" onclick="agregarATuLista(${serie.ident})">
+                    <h4 class="titulo-busqueda">${serie.name}</h4>`
+
+                serieBuscada.appendChild(serieEncontrada)
+
+            })
+
+        }
+    })
+}
+
+function quitarBusqueda(id){
+
+    busquedaAQuitar = id
+    serieBuscada.removeChild(busquedaAQuitar)
+
+}
+
+function llamarApi() {
+
+    const url = "https://api.themoviedb.org/3/tv/popular?api_key="
+
+    const apiKey = "b8abc2a29098bd89227225c45829c229"
+
+    const lenguaje = "&language=es-MX"
+
+    for (let i = 0; i < 6; i++) {
+
+        const page = "&page=" + numPag
+
+        numPag++
+
+        fetch(url + apiKey + lenguaje + page).then(response => response.json()).then(data => {
+
+            series = data.results
+            series.forEach(serie => {
+
+                listaDeSeries.push(serie)
+
+            });
+
+            if (i == 0) {
+
+                seriesVisibles(listaDeSeries)
+
+            }
+
+        }).catch(err => console.log(err))
+
+
+    }
+
+}
+
+
+function tandaDeSeries(desde, hasta, lista) { // Mostrar una tanda de series de la listaDeSeries
+
+    for (let i = desde; i < hasta; i++) {
+
+        serie = lista[i]
         indice = i
+        serie.ident = indice
         let seriesEnLista = document.createElement("div")
         seriesEnLista.className = "disponibles"
-        seriesEnLista.innerHTML = `<img src="${serie.img}" class="portada" onclick="agregarATuLista(${indice})">
-        <h4>${serie.nombre}</h4>
-        `
+        seriesEnLista.innerHTML = `<img src="${imagenes}${serie.poster_path}" class="portada" onclick="agregarATuLista(${serie.ident})">
+        <h4>${serie.name}</h4>`
 
-        seriesCartelera.appendChild(seriesEnLista)
+        cartelera.appendChild(seriesEnLista)
 
     };
 
 }
 
-function seriesVisibles() {  //El evento click para los botones que cambian las imagenes de series
-    
+function seriesVisibles(listaDeSeries) { //El evento click para los botones que cambian las imagenes de series
+
     let inicio = 0 // Primeras series que se muestran
     let final = 6
     let contador = 1
 
-    cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
+    cantidad.innerHTML = `${contador} / ${listaDeSeries.length}`
 
-    tandaDeSeries(inicio, final);
+    tandaDeSeries(inicio, final, listaDeSeries);
 
-        contenedor.addEventListener("click", (e)=>{
+    contenedor.addEventListener("click", (e) => {
 
-        if(e.target == botonSig && (final != 12)){ // Muestra mas series, hasta las que hay disponibes, es decir 10(el final)
-            
+        if (e.target == botonSig && (final != 120)) { // Muestra mas series, hasta las que hay disponibes, es decir 10(el final)
+
             contador++
-            seriesCartelera.innerHTML = null
+            cartelera.innerHTML = null
             inicio += 6
-            final  += 6
-            tandaDeSeries(inicio,  final)
+            final += 6
+            tandaDeSeries(inicio, final, listaDeSeries)
             cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
 
-        } else if(e.target == botonSig && (final == 12)){
+        } else if (e.target == botonAnt && (inicio != 0)) {
 
-            seriesCartelera.innerHTML = null
+            contador--
+            cartelera.innerHTML = null
+            inicio -= 6
+            final -= 6
+            tandaDeSeries(inicio, final, listaDeSeries);
+            cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
+
+        } else if (e.target == botonSig && (final == 120)) {
+
+            cartelera.innerHTML = null
             contador = 1
             inicio = 0
-            final  = 6
-            tandaDeSeries(inicio, final);
+            final = 6
+            tandaDeSeries(inicio, final, listaDeSeries);
             cantidad.innerHTML = `${contador} / ${listaDeSeries.length / 6}`
 
         }
@@ -79,14 +162,15 @@ function seriesVisibles() {  //El evento click para los botones que cambian las 
 
 }
 
-function verificarSeries(){
+
+function verificarSeries() {
 
     if (localStorage.getItem("series")) {
-        
+
         tuListaDeSeries = JSON.parse(localStorage.getItem("series"));
 
         tuListaDeSeries.forEach(serie => {
-            
+
             serie.calificacion == null ? mostrarTuLista(serie) : mostrarTuListaActualizada(serie)
 
         });
@@ -94,7 +178,7 @@ function verificarSeries(){
 
 }
 
-function noEsRepetida(serieAgregar){ // Verifica tuLista para ver que no haya repetidas, a partir del id de la serie
+function noEsRepetida(serieAgregar) { // Verifica tuLista para ver que no haya repetidas, a partir del id de la serie
 
     indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.id === serieAgregar.id)
     return indiceEncontrado === -1
@@ -102,32 +186,32 @@ function noEsRepetida(serieAgregar){ // Verifica tuLista para ver que no haya re
 }
 
 
-function agregarATuLista(indice){ // Esto suma la serie seleccionada a tu lista
+function agregarATuLista(indice) { // Esto suma la serie seleccionada a tu lista
 
     serieAgregar = listaDeSeries[indice];
 
-    if(noEsRepetida(serieAgregar)){
+    if (noEsRepetida(serieAgregar)) {
 
         tuListaDeSeries.push(serieAgregar);
         mostrarTuLista(serieAgregar);
         actualizarStorage(tuListaDeSeries);
         Toastify({
-            text:`${serieAgregar.nombre} fue agregada a tu lista` ,
+            text: `${serieAgregar.name} fue agregada a tu lista`,
             duration: 3000,
-            gravity: "top", 
+            gravity: "top",
             position: "center",
             className: "cartelito",
             style: {
-              background: "linear-gradient(to right, #e6b329, #ae830a)",
+                background: "linear-gradient(to right, #e6b329, #ae830a)",
             }
-          }).showToast();
-        
+        }).showToast();
+
 
     }
 }
 
 
-function borrarSerie(idCarta, serieId){ // Función que en base al id de la carta la borra, y borra la misma serie de la lista
+function borrarSerie(idCarta, serieId) { // Función que en base al id de la carta la borra, y borra la misma serie de la lista
 
     cartaBorrar = document.getElementById(idCarta)
     tuLista.removeChild(cartaBorrar)
@@ -137,7 +221,7 @@ function borrarSerie(idCarta, serieId){ // Función que en base al id de la cart
 
 }
 
-function calificar(cartaId){
+function calificar(cartaId) {
 
     let cartaActual = document.getElementById(cartaId)
     idCalificacion = `calificacion ${cartaId}`
@@ -145,21 +229,21 @@ function calificar(cartaId){
     let calificacionElegida = parseInt(calificacion.options[calificacion.selectedIndex].value);
     let textoCalificacion = document.createElement("p");
     textoCalificacion.className = "textoCalificacion"
-    textoCalificacion.innerHTML = `${calificacionElegida}☆`
+    textoCalificacion.innerHTML = `Tu calificación es: ${calificacionElegida}☆`
     textoAQuitar = cartaActual.lastChild
     cartaActual.removeChild(textoAQuitar)
     cartaActual.appendChild(textoCalificacion)
-    
+
     Toastify({
         text: "Tu calificación fue exitosa",
         duration: 3000,
-        gravity: "top", 
+        gravity: "top",
         position: "center",
         className: "cartelito",
         style: {
-          background: "linear-gradient(to right, #e6b329, #ae830a)",
+            background: "linear-gradient(to right, #e6b329, #ae830a)",
         }
-      }).showToast();
+    }).showToast();
 
     guardarCalificacion(calificacionElegida, cartaId)
     actualizarStorage(tuListaDeSeries)
@@ -167,69 +251,96 @@ function calificar(cartaId){
 
 }
 
-function guardarCalificacion(calificacion, id){
+function guardarCalificacion(calificacion, id) {
 
-    indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.id === id)
-    calificacionActual = `${calificacion}☆`
+    indiceEncontrado = tuListaDeSeries.findIndex(serie => serie.ident === id)
+    calificacionActual = `Tu calificación es: ${calificacion}☆`
     tuListaDeSeries[indiceEncontrado].calificacion = calificacionActual
- 
+
 
 }
 
-function mostrarTuListaActualizada(serie){  // Esto crea tu lista para que se vea en html
-        
+function mostrarTuListaActualizada(serie) { // Esto crea tu lista para que se vea en html
+
     let carta = document.createElement("div");
     carta.className = "carta"
-    carta.id = serie.id
-    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>
-    <div><img class="portada-carta" src="${serie.img}"></div>
-    <h3>${serie.nombre}</h3>
-    <li>Genero: ${serie.genero}</li>
-    <li>Duración: ${serie.temporadas}</li>
-    <p class="textoCalificacion">${serie.calificacion}</p>`
-          
+    carta.id = serie.ident
+    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.ident})">Eliminar</button>
+        <div><img class="portada-carta" src="${imagenes}${serie.poster_path}"></div>
+        <h3>${serie.name}</h3>
+        <li>Fecha de inicio: ${serie.first_air_date}</li>
+        <li>País: ${serie.origin_country}</li>
+        <button class="boton" onclick="mostrarSinopsis(${carta.id})">Sinopsis</button>
+        <p class="textoCalificacion">${serie.calificacion}</p>`
+
     tuLista.appendChild(carta)
 
-} 
+}
 
 
-function mostrarTuLista(serie){  // Esto crea tu lista para que se vea en html
-        
+function mostrarTuLista(serie) { // Esto crea tu lista para que se vea en html
+
     let carta = document.createElement("div");
     carta.className = "carta"
-    carta.id = serie.id
-    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.id})">Eliminar</button>
-    <div><img class="portada-carta" src="${serie.img}"></div>
-    <h3>${serie.nombre}</h3>
-    <li>Genero: ${serie.genero}</li>
-    <li>Duración: ${serie.temporadas}</li>
-    <p> 
-        <select class="calificacion" id="calificacion ${carta.id}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <button class="boton-calif" onclick="calificar(${carta.id})">Calificar</button>
-    </p>`
-          
+    carta.id = serie.ident
+    carta.innerHTML = `<button class="boton" onclick="borrarSerie(${carta.id}, ${serie.ident})">Eliminar</button>
+        <div><img class="portada-carta" src="${imagenes}${serie.poster_path}"></div>
+        <h3>${serie.name}</h3>
+        <li>Fecha de inicio: ${serie.first_air_date}</li> 
+        <li>País: ${serie.origin_country}</li>
+        <button class="boton" onclick="mostrarSinopsis(${carta.id})">Sinopsis</button>
+        <p> 
+            <select class="calificacion" id="calificacion ${carta.id}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button class="boton-calif" onclick="calificar(${carta.id})">Calificar</button>
+        </p>`
+
     tuLista.appendChild(carta)
 
-} 
+}
 
-function actualizarStorage(series){ // Actualiza el storage con las series de tuLista
+function mostrarSinopsis(id) {
+
+    indice = tuListaDeSeries.findIndex(serie => serie.ident == id)
+
+    serie = tuListaDeSeries[indice]
+
+    if (serie.overview == "") {
+
+        Swal.fire({
+            html: `<li>Esta serie no tiene sinopsis aun</li>`,
+            background: "#1b1e22",
+            color: "white",
+            confirmButtonColor: "#e6b329"
+        })
+
+    } else {
+
+        Swal.fire({
+            html: `<h3>${serie.name} Sinopsis</h3>
+            <li>${serie.overview}</li>`,
+            background: "#1b1e22",
+            color: "white",
+            confirmButtonColor: "#e6b329"
+        })
+
+    }
+
+}
+
+function actualizarStorage(series) { // Actualiza el storage con las series de tuLista
 
     localStorage.setItem("series", JSON.stringify(series));
-        
-};  
 
+};
+
+llamarApi();
+
+buscarSerie();
 
 verificarSeries();
-
-seriesVisibles();
-
-
-
-
-
