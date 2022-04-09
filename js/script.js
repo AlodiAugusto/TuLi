@@ -40,12 +40,10 @@ function buscarSerie() {
 
             fetch(url + apiKey + busqueda).then(response => response.json()).then(serie => {
 
-
-                console.log(serie);
                 listaDeSeries.push(serie.results[0])
                 serie = serie.results[0]
-                serie.ident = tuListaDeSeries.length - 1
-                
+                serie.ident = listaDeSeries.length - 1
+
                 if(noEsRepetida(serie, seriesBuscadas)){
                     
                     let serieEncontrada = document.createElement("div")
