@@ -81,9 +81,9 @@ function llamarApi() {
 
     const apiKey = "b8abc2a29098bd89227225c45829c229"
 
-    const lenguaje = "&language=es-MX"
+    const lenguaje = "&language=es-AR"
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 12; i++) {
 
         const page = "&page=" + numPag
 
@@ -94,8 +94,12 @@ function llamarApi() {
             series = data.results
             series.forEach(serie => {
 
+            if(serie.original_language != "ar"){
+
                 listaDeSeries.push(serie)
 
+            }
+            
             });
 
             if (i == 0) {
@@ -135,7 +139,7 @@ function seriesVisibles(listaDeSeries) { //El evento click para los botones que 
     let inicio = 0 // Primeras series que se muestran
     let final = 6
     let contador = 1
-    let cantidadPags = listaDeSeries.length
+    let cantidadPags = 20
 
     cantidad.innerHTML = `${contador} / ${cantidadPags}`
 
