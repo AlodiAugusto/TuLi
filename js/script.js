@@ -102,7 +102,7 @@ function llamarApi() {
             
             });
 
-            if (i == 0) {
+            if (i == 1) {
 
                 seriesVisibles(listaDeSeries)
 
